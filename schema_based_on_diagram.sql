@@ -1,8 +1,8 @@
 CREATE TABLE patients(
-id INT GENERATED ALWAYS AS IDENTITY,
-name VARCHAR(200),
-date_of_birth date,
-PRIMARY KEY(id));
+    id INT GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR(200),
+    date_of_birth date,
+    PRIMARY KEY(id));
 
 CREATE TABLE medical_histories(
     id INT GENERATED ALWAYS AS IDENTITY,
@@ -23,8 +23,8 @@ CREATE TABLE invoices(
 
 CREATE TABLE treatments(
     id INT GENERATED ALWAYS AS IDENTITY,
-    type VARCHAR,
-    name VARCHAR,
+    type VARCHAR(300),
+    name VARCHAR(300),
     PRIMARY KEY(id)
 );
 
@@ -37,3 +37,8 @@ CREATE TABLE invoice_items(
     treament_id INT REFERENCES treatments(id),
     PRIMARY KEY(id)
 );
+
+CREATE INDEX patient_id_index ON medical_histories(patient_id ASC) ;
+CREATE INDEX medical_history_id_index ON invoices(medical_history_id ASC) ;
+CREATE INDEX invoice_id_index ON invoice_items(invoice_id ASC);
+CREATE INDEX treament_id_index ON invoice_items(treament_id ASC);
